@@ -278,7 +278,7 @@ left_prompt_segment() {
     echo -n "%{$bg%}%{$fg%} "
   fi
   CURRENT_BG=$2
-  [[ -n $4 ]] && echo -n "$4 "
+  [[ -n $4 ]] && echo -n "%B$4 %b"
 }
 
 # End the left prompt, closing any open segments
@@ -437,7 +437,8 @@ prompt_aws() {
 # Note that if $DEFAULT_USER is not set, this prompt segment will always print
 prompt_context() {
   if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    $1_prompt_segment "$0" "$DEFAULT_COLOR" "011" "%(!.%{%F{yellow}%}.)$USER@%m"
+#    $1_prompt_segment "$0" "$DEFAULT_COLOR" "011" "%(!.%{%F{black}%}.)$USER@%m"
+    $1_prompt_segment "$0" "$DEFAULT_COLOR" "011" "$USER@%m"
   fi
 }
 
